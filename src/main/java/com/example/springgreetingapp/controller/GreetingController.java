@@ -21,7 +21,7 @@ public class GreetingController {
      * Method using GET to pass the name to the User and then to the Service layer.
      * @param name - Will pass the name
      * @return - Will return the counter and user name
-     * URL : http://localhost:8081/greeting/home?name=Tom
+     * URL : http://localhost:8081/greeting/home?name=Nithya
      */
     @GetMapping("/home")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
@@ -36,7 +36,7 @@ public class GreetingController {
      * @param firstName
      * @param lastName
      * @return
-     * URL : http://localhost:8081/greeting/fullname?firstName=Tom&lastName=Thomas
+     * URL : http://localhost:8081/greeting/fullname?firstName=Nithya&lastName=R
      */
     @GetMapping("/fullname")
     public Greeting greeting(@RequestParam(value = "firstName", defaultValue = "first") String firstName,
@@ -45,17 +45,6 @@ public class GreetingController {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         return iGreetingService.addGreeting(user);
-    }
-
-    /**
-     *  Method to Get all the message in the repository
-     *
-     * @return- It will return the list of all the users in the repository
-     * URL : http://localhost:8081/greeting/all
-     */
-    @GetMapping("/all")
-    public List<Greeting> getAll() {
-        return iGreetingService.getAll();
     }
 
     /**
@@ -69,6 +58,17 @@ public class GreetingController {
     @GetMapping("/get")
     public Greeting getGreetingById(@RequestParam(name = "id") long id){
         return iGreetingService.getGreetingById(id);
+    }
+
+    /**
+     *  Method to List all the greeting message in the repository
+     *
+     * @return- It will return the list of all the users in the repository
+     * URL : http://localhost:8081/greeting/all
+     */
+    @GetMapping("/all")
+    public List<Greeting> getAll() {
+        return iGreetingService.getAll();
     }
 
 }
